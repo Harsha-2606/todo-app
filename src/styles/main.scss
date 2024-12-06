@@ -1,0 +1,415 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Parkinsans", sans-serif;
+}
+.loading-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: white;
+
+  .loading-content{
+    text-align: center;
+  }
+  .loading-logo{
+    width: 5vw;
+  }
+  .loading-spinner{
+    border: 0.2vw solid rgba(255, 255, 255, 0.3);
+    border-top: 0.2vw solid red;
+    border-radius: 50%;
+    width: 2.7vh;
+    height: 2.7vh;
+    animation: spin 0.7s linear infinite;
+    margin-top: 4.2vh;
+    margin-left: 1.8vw;
+  }
+  @keyframes spin{
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.logincontainer{
+    margin: 1vh 10vw;
+    margin-top: 20vh;
+    
+    .logindetails{
+        display: flex;
+        flex-direction: column;
+    }
+    .loginlogo img{
+        width: 17vw;
+    }
+    .login{
+        margin: 7vh 3vw;
+    }
+    .login a{
+        text-decoration: none;
+    }
+    .loginbutton{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 0.2vw solid rgb(225, 224, 224);
+        border-radius: 0.7vw;
+        width: 35%;
+        margin-top: 4vh;
+        padding: 2vh 2vw;
+    }
+    .loginbutton:hover{
+        background-color: rgb(233, 233, 233);
+        cursor: pointer;
+    }
+    .loginbutton img{
+        height: 3vh;
+        margin-bottom: 0.5vh;
+        margin-right: 0.5vw;
+    }
+    .loginbutton button{
+        font-size: 1.4vw;
+        font-weight: 700;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+    }
+    .terms-policy{
+        margin: 0 3.3vw;
+        position: relative;
+        bottom: 5vh;
+    }
+    .terms-policy p{
+        width: 36%;
+        font-size: 1vw;
+    }
+    .terms-policy p a{
+        color: black;
+    }
+    .loginimage{
+        position: absolute;
+        top: 30vh;
+        right: 8vw;
+    }
+    .loginimage img{
+        width: 40vw;
+    }
+}
+
+.dashboard-container{
+    position: fixed;
+    display: flex;
+    width: 100vw;
+
+    .dashboard-details{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        height: 100vh;
+        width: 21.85vw;
+        background-color: #F8EBEB;
+        border-top-right-radius: 3vw;
+        border-bottom-right-radius: 3vw;
+    }
+    .header-details{
+        display: flex;
+        flex-direction: column;
+    }
+    .header-image{
+        position: relative;
+        display: flex;
+        left: 85.9vw;
+        bottom: 3.5vh;
+    }
+    .header-image img{
+        width: 15vw;
+    }
+    .dashboard-header h1{
+        font-size: 1.3vw;
+        font-weight: 400;
+        position: relative;
+        bottom: 16vh;
+        left: 1.3vw;
+    }
+    .dashboard-button{
+        position: relative;
+        display: flex;
+        left: 1.3vw;
+        bottom: 2vh;
+        height: 6vh;
+        width: max-content;
+        border: 0.1vw solid #F8EBEB;
+        border-radius: 1vw;
+        transition: 0.3s ease-in-out;
+    }
+    .dashboard-button button{
+        font-size: 1.5vw;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+    }
+    .dashboard-button:hover{
+        background-color: #f5d4d4;
+    }
+}
+
+main{
+    position: fixed;
+    left: 30vw;
+    top: 7.5vh;
+
+    .add-task-button{
+        border: none;
+        background-color: transparent;
+        color: rgb(121, 120, 120);
+        font-size: 1.1vw;
+        cursor: pointer;
+        position: relative;
+        top: 2.5vh;
+        left: 0.6vw;
+        display: flex;
+        align-items: center;
+    }
+    .icon-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        right: 0.8vw;
+        height: 3.2vh;
+        width: 3.2vh;
+        border-radius: 50%;
+    }
+    .add-task-button:hover span{
+        color: rgb(235, 89, 89);
+    }
+    .add-task-button:hover .icon-container{
+        background-color: rgb(235, 89, 89);
+    }
+    .add-task-button:hover .plus-icon{
+        color: white;
+    }
+    .plus-icon{
+        color: rgb(235, 109, 109);
+        font-size: 1.2vw;
+    }
+    .task-form{
+        display: flex;
+        flex-direction: column;
+        height: 27vh;
+        width: 61.5vw;
+        position: relative;
+        top: 1.6vh;
+        border: 0.1vw solid rgb(167, 165, 165);
+        border-radius: 1vw;
+    }
+    .input-fields{
+        display: flex;
+        flex-direction: column;
+        padding: 1.8vh 0.6vw;
+    }
+    .input1{
+        border: none;
+        font-weight: 400;
+        color: rgb(100, 100, 100);
+        outline: none;
+        font-size: 1.1vw;
+    }
+    .input2{
+        border: none;
+        color: rgb(100, 100, 100);
+        padding: 1.5vh 0.3vw;
+        height: 2vh;
+        resize: none;
+        overflow: hidden;
+        outline: none;
+        letter-spacing: -0.1vw;
+    }
+    .due-prior{
+        display: flex;
+        justify-content: space-between;
+        width: 30.1%;
+        padding: 0 0.75vw;
+    }
+    .duedate{
+        height: 5vh;
+        border: 0.1vw solid rgb(167, 165, 165);
+        width: max-content;
+        border-radius: 0.4vw;
+        color: rgb(121, 120, 120);
+        outline: none;
+        cursor: pointer;
+    }
+    .duedate::-webkit-calendar-picker-indicator{
+        cursor: pointer;
+    }
+    .duedate:hover{
+        background-color: rgb(225, 224, 224);
+        color: rgb(21, 21, 21);
+    }
+    .priority{
+        height: 5vh;
+        border: 0.1vw solid rgb(167, 165, 165);
+        width: 9vw;
+        border-radius: 0.4vw;
+        cursor: pointer;
+        color: rgb(121, 120, 120);
+        outline: none;
+    }
+    .priority:hover{
+        background-color: rgb(225, 224, 224);
+        color: rgb(21, 21, 21);
+    }
+    .form-buttons{
+        display: flex;
+        justify-content: flex-end;
+        border-top: 0.1vw solid rgb(167, 165, 165);
+        position: relative;
+        top: 2vh;
+    }
+    .twobuttons{
+        display: flex;
+        justify-content: space-between;
+        width: 18.5%;
+        margin: 0.7vw;
+    }
+    .cancel-button{
+        height: 5vh;
+        width: 5.2vw;
+        border: none;
+        border-radius: 0.4vw;
+        cursor: pointer;
+    }
+    .cancel-button:hover{
+        background-color: rgb(225, 224, 224);
+    }
+    .add-button{
+        height: 5vh;
+        width: 5.6vw;
+        border: none;
+        border-radius: 0.4vw;
+        cursor: pointer;
+        background-color: rgb(232, 124, 124);
+        color: white;
+    }
+    .add-button:hover{
+        background-color: rgb(236, 85, 85);
+    }
+    .task-list{
+        margin-top: 7vh;
+    }
+    .task-item{
+        display: flex;
+        flex-direction: column;
+        height: 20vh;
+        width: 50vw;
+        border: 0.1vw solid rgb(167, 165, 165);
+        border-radius: 1vw;
+    }
+    .task-details{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        bottom: 2vh;
+        left: 1vw;
+    }
+    .task-details p{
+        position: relative;
+        bottom: 5vh;
+        width: 100%;
+    }
+    .task-details2{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        position: relative;
+        bottom: 8vh;
+        border-top: 0.1vw solid rgb(167, 165, 165);
+    }
+    .task-more-details{
+        display: flex;
+        justify-content: space-between;
+        width: 40%;
+        position: relative;
+        left: 1vw;
+    }
+    .task-actions{
+        display: flex;
+        justify-content: space-between;
+        width: 23%;
+        position: relative;
+        right: 1vw;
+    }
+    .edit-btn{
+        height: 5vh;
+        width: 5.2vw;
+        border: none;
+        border-radius: 0.4vw;
+        cursor: pointer;
+    }
+    .edit-btn:hover{
+        background-color: rgb(187, 184, 184);
+    }
+    .delete-btn{
+        height: 5vh;
+        width: 5.6vw;
+        border: none;
+        border-radius: 0.4vw;
+        cursor: pointer;
+        background-color: #2e2d2d;
+        color: white;
+    }
+    .delete-btn:hover{
+        background-color: black;
+    }
+}
+
+.image-details-container{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    top: 26.8vh;
+    left: 43.8vw;
+
+    .image-details{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        bottom: 2.5vh;
+    }
+    h4{
+        font-weight: 500;
+        font-size: 1.2vw;
+    }
+    p{
+        font-size: 1vw;
+        width: 65%;
+        position: relative;
+        bottom: 3.5vh;
+        color: rgb(100, 100, 100);
+        line-height: 3.7vh;
+        font-weight: 400;
+    }
+    a{
+        color: rgb(230, 73, 73);
+        font-size: 1vw;
+        position: relative;
+        bottom: 3vh;
+    }
+    .question-icon{
+        font-size: 2.5vh;
+        margin-right: 0.4vw;
+    }
+}

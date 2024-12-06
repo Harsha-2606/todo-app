@@ -1,0 +1,413 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Parkinsans", sans-serif;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: white;
+}
+.loading-container .loading-content {
+  text-align: center;
+}
+.loading-container .loading-logo {
+  width: 5vw;
+}
+.loading-container .loading-spinner {
+  border: 0.2vw solid rgba(255, 255, 255, 0.3);
+  border-top: 0.2vw solid red;
+  border-radius: 50%;
+  width: 2.7vh;
+  height: 2.7vh;
+  animation: spin 0.7s linear infinite;
+  margin-top: 4.2vh;
+  margin-left: 1.8vw;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.logincontainer {
+  margin: 1vh 10vw;
+  margin-top: 20vh;
+}
+.logincontainer .logindetails {
+  display: flex;
+  flex-direction: column;
+}
+.logincontainer .loginlogo img {
+  width: 17vw;
+}
+.logincontainer .login {
+  margin: 7vh 3vw;
+}
+.logincontainer .login a {
+  text-decoration: none;
+}
+.logincontainer .loginbutton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.2vw solid rgb(225, 224, 224);
+  border-radius: 0.7vw;
+  width: 35%;
+  margin-top: 4vh;
+  padding: 2vh 2vw;
+}
+.logincontainer .loginbutton:hover {
+  background-color: rgb(233, 233, 233);
+  cursor: pointer;
+}
+.logincontainer .loginbutton img {
+  height: 3vh;
+  margin-bottom: 0.5vh;
+  margin-right: 0.5vw;
+}
+.logincontainer .loginbutton button {
+  font-size: 1.4vw;
+  font-weight: 700;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.logincontainer .terms-policy {
+  margin: 0 3.3vw;
+  position: relative;
+  bottom: 5vh;
+}
+.logincontainer .terms-policy p {
+  width: 36%;
+  font-size: 1vw;
+}
+.logincontainer .terms-policy p a {
+  color: black;
+}
+.logincontainer .loginimage {
+  position: absolute;
+  top: 30vh;
+  right: 8vw;
+}
+.logincontainer .loginimage img {
+  width: 40vw;
+}
+
+.dashboard-container {
+  position: fixed;
+  display: flex;
+  width: 100vw;
+}
+.dashboard-container .dashboard-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  height: 100vh;
+  width: 21.85vw;
+  background-color: #F8EBEB;
+  border-top-right-radius: 3vw;
+  border-bottom-right-radius: 3vw;
+}
+.dashboard-container .header-details {
+  display: flex;
+  flex-direction: column;
+}
+.dashboard-container .header-image {
+  position: relative;
+  display: flex;
+  left: 85.9vw;
+  bottom: 3.5vh;
+}
+.dashboard-container .header-image img {
+  width: 15vw;
+}
+.dashboard-container .dashboard-header h1 {
+  font-size: 1.3vw;
+  font-weight: 400;
+  position: relative;
+  bottom: 16vh;
+  left: 1.3vw;
+}
+.dashboard-container .dashboard-button {
+  position: relative;
+  display: flex;
+  left: 1.3vw;
+  bottom: 2vh;
+  height: 6vh;
+  width: -moz-max-content;
+  width: max-content;
+  border: 0.1vw solid #F8EBEB;
+  border-radius: 1vw;
+  transition: 0.3s ease-in-out;
+}
+.dashboard-container .dashboard-button button {
+  font-size: 1.5vw;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.dashboard-container .dashboard-button:hover {
+  background-color: #f5d4d4;
+}
+
+main {
+  position: fixed;
+  left: 30vw;
+  top: 7.5vh;
+}
+main .add-task-button {
+  border: none;
+  background-color: transparent;
+  color: rgb(121, 120, 120);
+  font-size: 1.1vw;
+  cursor: pointer;
+  position: relative;
+  top: 2.5vh;
+  left: 0.6vw;
+  display: flex;
+  align-items: center;
+}
+main .icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  right: 0.8vw;
+  height: 3.2vh;
+  width: 3.2vh;
+  border-radius: 50%;
+}
+main .add-task-button:hover span {
+  color: rgb(235, 89, 89);
+}
+main .add-task-button:hover .icon-container {
+  background-color: rgb(235, 89, 89);
+}
+main .add-task-button:hover .plus-icon {
+  color: white;
+}
+main .plus-icon {
+  color: rgb(235, 109, 109);
+  font-size: 1.2vw;
+}
+main .task-form {
+  display: flex;
+  flex-direction: column;
+  height: 27vh;
+  width: 61.5vw;
+  position: relative;
+  top: 1.6vh;
+  border: 0.1vw solid rgb(167, 165, 165);
+  border-radius: 1vw;
+}
+main .input-fields {
+  display: flex;
+  flex-direction: column;
+  padding: 1.8vh 0.6vw;
+}
+main .input1 {
+  border: none;
+  font-weight: 400;
+  color: rgb(100, 100, 100);
+  outline: none;
+  font-size: 1.1vw;
+}
+main .input2 {
+  border: none;
+  color: rgb(100, 100, 100);
+  padding: 1.5vh 0.3vw;
+  height: 2vh;
+  resize: none;
+  overflow: hidden;
+  outline: none;
+  letter-spacing: -0.1vw;
+}
+main .due-prior {
+  display: flex;
+  justify-content: space-between;
+  width: 30.1%;
+  padding: 0 0.75vw;
+}
+main .duedate {
+  height: 5vh;
+  border: 0.1vw solid rgb(167, 165, 165);
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 0.4vw;
+  color: rgb(121, 120, 120);
+  outline: none;
+  cursor: pointer;
+}
+main .duedate::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+main .duedate:hover {
+  background-color: rgb(225, 224, 224);
+  color: rgb(21, 21, 21);
+}
+main .priority {
+  height: 5vh;
+  border: 0.1vw solid rgb(167, 165, 165);
+  width: 9vw;
+  border-radius: 0.4vw;
+  cursor: pointer;
+  color: rgb(121, 120, 120);
+  outline: none;
+}
+main .priority:hover {
+  background-color: rgb(225, 224, 224);
+  color: rgb(21, 21, 21);
+}
+main .form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 0.1vw solid rgb(167, 165, 165);
+  position: relative;
+  top: 2vh;
+}
+main .twobuttons {
+  display: flex;
+  justify-content: space-between;
+  width: 18.5%;
+  margin: 0.7vw;
+}
+main .cancel-button {
+  height: 5vh;
+  width: 5.2vw;
+  border: none;
+  border-radius: 0.4vw;
+  cursor: pointer;
+}
+main .cancel-button:hover {
+  background-color: rgb(225, 224, 224);
+}
+main .add-button {
+  height: 5vh;
+  width: 5.6vw;
+  border: none;
+  border-radius: 0.4vw;
+  cursor: pointer;
+  background-color: rgb(232, 124, 124);
+  color: white;
+}
+main .add-button:hover {
+  background-color: rgb(236, 85, 85);
+}
+main .task-list {
+  margin-top: 7vh;
+}
+main .task-item {
+  display: flex;
+  flex-direction: column;
+  height: 20vh;
+  width: 50vw;
+  border: 0.1vw solid rgb(167, 165, 165);
+  border-radius: 1vw;
+}
+main .task-details {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  bottom: 2vh;
+  left: 1vw;
+}
+main .task-details p {
+  position: relative;
+  bottom: 5vh;
+  width: 100%;
+}
+main .task-details2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  position: relative;
+  bottom: 8vh;
+  border-top: 0.1vw solid rgb(167, 165, 165);
+}
+main .task-more-details {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+  position: relative;
+  left: 1vw;
+}
+main .task-actions {
+  display: flex;
+  justify-content: space-between;
+  width: 23%;
+  position: relative;
+  right: 1vw;
+}
+main .edit-btn {
+  height: 5vh;
+  width: 5.2vw;
+  border: none;
+  border-radius: 0.4vw;
+  cursor: pointer;
+}
+main .edit-btn:hover {
+  background-color: rgb(187, 184, 184);
+}
+main .delete-btn {
+  height: 5vh;
+  width: 5.6vw;
+  border: none;
+  border-radius: 0.4vw;
+  cursor: pointer;
+  background-color: #2e2d2d;
+  color: white;
+}
+main .delete-btn:hover {
+  background-color: black;
+}
+
+.image-details-container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  top: 26.8vh;
+  left: 43.8vw;
+}
+.image-details-container .image-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  bottom: 2.5vh;
+}
+.image-details-container h4 {
+  font-weight: 500;
+  font-size: 1.2vw;
+}
+.image-details-container p {
+  font-size: 1vw;
+  width: 65%;
+  position: relative;
+  bottom: 3.5vh;
+  color: rgb(100, 100, 100);
+  line-height: 3.7vh;
+  font-weight: 400;
+}
+.image-details-container a {
+  color: rgb(230, 73, 73);
+  font-size: 1vw;
+  position: relative;
+  bottom: 3vh;
+}
+.image-details-container .question-icon {
+  font-size: 2.5vh;
+  margin-right: 0.4vw;
+}/*# sourceMappingURL=main.css.map */
