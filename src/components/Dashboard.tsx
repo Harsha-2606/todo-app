@@ -103,26 +103,17 @@ const Dashboard: React.FC<DashboardProps> = ({ user, handleSignOut, tasks, setTa
   }, [user?.email, setTasks]);
 
   useEffect(() => {
-    const savedActiveButton = localStorage.getItem('activeButton');
-    const validSavedActiveButton = savedActiveButton as 'Today' | 'Filter' | null;
-
-    if (validSavedActiveButton) {
-      setActiveButton(validSavedActiveButton);
-    } else {
-      setActiveButton('Today');
-    }
+    const savedActiveButton = localStorage.getItem('activeButton') as 'Today' | 'Filter';
+    setActiveButton(savedActiveButton || 'Today');
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('activeButton', activeButton);
+  }, [activeButton]);
   
   const handleViewSwitch = (button: 'Today' | 'Filter') => {
     setActiveButton(button);
-    setIsFiltering(button === 'Filter');
-    localStorage.setItem('activeButton', button);
   };
-
-
-  useEffect(() => {
-    localStorage.setItem('filterCriteria', JSON.stringify(filterCriteria));
-  }, [filterCriteria]);
   
   useEffect(() => {
     const savedFilterCriteria = localStorage.getItem('filterCriteria');
@@ -130,6 +121,10 @@ const Dashboard: React.FC<DashboardProps> = ({ user, handleSignOut, tasks, setTa
       setFilterCriteria(JSON.parse(savedFilterCriteria));
     }
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('filterCriteria', JSON.stringify(filterCriteria));
+  }, [filterCriteria]);
 
   const visibleTasks = tasks.filter((task) => !task.completed);
   

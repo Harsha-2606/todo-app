@@ -164,7 +164,7 @@ body {
 .dashboard-container .db-search:hover, .dashboard-container .db-today:hover, .dashboard-container .db-filter:hover {
   background-color: rgb(225, 224, 224);
 }
-.dashboard-container .dashboard-actions button:focus {
+.dashboard-container .dashboard-actions button.active {
   background-color: #ffece4;
   color: rgb(230, 73, 73);
 }
