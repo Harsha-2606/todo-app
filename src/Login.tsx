@@ -22,11 +22,11 @@ const Login: React.FC<LoginProps> = ({ handleGoogleSignIn }) => {
       <div className="terms-policy">
         <p>
           By continuing with Google, you agree to Todoist's{' '}
-          <a href="https://doist.com/terms-of-service" target="_blank" rel="noreferrer">
+          <a href="https://doist.com/terms-of-service" target="_blank" rel="noreferrer noopener" >
             Terms of Service
           </a>{' '}
           and{' '}
-          <a href="https://doist.com/privacy" target="_blank" rel="noreferrer">
+          <a href="https://doist.com/privacy" target="_blank" rel="noreferrer noopener">
             Privacy Policy
           </a>
         </p>

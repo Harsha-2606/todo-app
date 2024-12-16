@@ -8,11 +8,10 @@ import Login from '../src/Login';
 import { useLocation } from 'react-router-dom';
 
 interface UserModal {
-    displayName: string;
-    token: string;
-    email: string;
+  displayName: string;
+  token: string;
+  email: string;
 }
-
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 

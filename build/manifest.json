@@ -3,9 +3,9 @@
   "name": "Create React App Sample",
   "icons": [
     {
-      "src": "/todoist-logo.png",
+      "src": "todoist-logo.png",
       "type":"image/png",
-      "sizes": "1024x1024"
+      "sizes": "700x700"
     }
   ],
   "start_url": ".",

@@ -112,10 +112,8 @@ body {
   justify-content: space-between;
   position: relative;
   height: 100vh;
-  width: 21.85vw;
-  background-color: #F8EBEB;
-  border-top-right-radius: 3vw;
-  border-bottom-right-radius: 3vw;
+  width: 24.4vw;
+  background-color: #fcfaf8;
 }
 .dashboard-container .header-details {
   display: flex;
@@ -124,30 +122,63 @@ body {
 .dashboard-container .header-image {
   position: relative;
   display: flex;
-  left: 85.9vw;
+  left: 84vw;
   bottom: 3.5vh;
 }
 .dashboard-container .header-image img {
-  width: 15vw;
+  width: 17vw;
 }
 .dashboard-container .dashboard-header h1 {
-  font-size: 1.3vw;
+  font-size: 1.4vw;
   font-weight: 400;
   position: relative;
-  bottom: 16vh;
-  left: 1.3vw;
+  bottom: 18vh;
+  left: 1.5vw;
+}
+.dashboard-container .dashboard-actions-form {
+  position: relative;
+  left: 1.5vw;
+  bottom: 37vh;
+}
+.dashboard-container .dashboard-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  width: 83%;
+  transition: all 0.3s ease-in-out;
+}
+.dashboard-container .db-search, .dashboard-container .db-today, .dashboard-container .db-filter {
+  display: flex;
+  align-items: center;
+  height: 6.5vh;
+  background-color: #fcfaf8;
+  border: 0.1vw solid #fcfaf8;
+  border-radius: 0.6vw;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1.3vw;
+  gap: 1.3vh;
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+}
+.dashboard-container .db-search:hover, .dashboard-container .db-today:hover, .dashboard-container .db-filter:hover {
+  background-color: rgb(225, 224, 224);
+}
+.dashboard-container .dashboard-actions button:focus {
+  background-color: #ffece4;
+  color: rgb(230, 73, 73);
 }
 .dashboard-container .dashboard-button {
   position: relative;
   display: flex;
-  left: 1.3vw;
-  bottom: 2vh;
-  height: 6vh;
-  width: -moz-max-content;
-  width: max-content;
-  border: 0.1vw solid #F8EBEB;
-  border-radius: 1vw;
-  transition: 0.3s ease-in-out;
+  left: 1.5vw;
+  bottom: 1vh;
+  height: 5vh;
+  width: 20vw;
+  border: 0.1vw solid #fcfaf8;
+  border-radius: 0.6vw;
+  transition: 0.1s ease-in-out;
+  cursor: pointer;
 }
 .dashboard-container .dashboard-button button {
   font-size: 1.5vw;
@@ -156,22 +187,89 @@ body {
   cursor: pointer;
 }
 .dashboard-container .dashboard-button:hover {
-  background-color: #f5d4d4;
+  background-color: rgb(225, 224, 224);
+}
+.dashboard-container .signout {
+  position: relative;
+  left: 1.2vh;
+}
+
+.filter-container {
+  margin: 3vw;
+  margin-left: 4.7vw;
+}
+.filter-container h2 {
+  font-size: 2.2vw;
+}
+.filter-container .filter-options {
+  display: flex;
+  justify-content: space-between;
+  width: 130%;
+  align-items: center;
+}
+.filter-container label {
+  font-size: 1.4vw;
+}
+.filter-container .p-select {
+  position: relative;
+  left: 1vw;
+  height: 4vh;
+  width: 7vw;
+  border: 0.1vw solid rgb(228, 228, 228);
+  outline: none;
+  border-radius: 0.4vw;
+}
+.filter-container .dd-select {
+  position: relative;
+  left: 1vw;
+  height: 4vh;
+  width: 8vw;
+  border: 0.1vw solid rgb(228, 228, 228);
+  outline: none;
+  border-radius: 0.4vw;
+}
+.filter-container .tag-select {
+  position: relative;
+  left: 1vw;
+  height: 4vh;
+  width: 7vw;
+  border: 0.1vw solid rgb(228, 228, 228);
+  outline: none;
+  border-radius: 0.4vw;
+}
+.filter-container .apply-filters-btn {
+  position: relative;
+  top: 5vh;
+  height: 5vh;
+  width: 8vw;
+  border: none;
+  border-radius: 0.4vw;
+  cursor: pointer;
+  background-color: rgb(232, 149, 149);
+  color: white;
+  font-size: 1.2vw;
+  font-weight: 500;
+}
+.filter-container .apply-filters-btn:hover {
+  background-color: rgb(236, 85, 85);
 }
 
 main {
   position: fixed;
-  left: 30vw;
-  top: 7.5vh;
+  left: 29vw;
+  top: 6.5vh;
+}
+main h2 {
+  font-size: 2.2vw;
 }
 main .add-task-button {
   border: none;
   background-color: transparent;
   color: rgb(121, 120, 120);
-  font-size: 1.1vw;
+  font-size: 1.5vw;
   cursor: pointer;
   position: relative;
-  top: 2.5vh;
+  top: 2.3vh;
   left: 0.6vw;
   display: flex;
   align-items: center;
@@ -197,16 +295,16 @@ main .add-task-button:hover .plus-icon {
 }
 main .plus-icon {
   color: rgb(235, 109, 109);
-  font-size: 1.2vw;
+  font-size: 1.3vw;
 }
 main .task-form {
   display: flex;
   flex-direction: column;
-  height: 27vh;
-  width: 61.5vw;
+  height: 24vh;
+  width: 66.1vw;
   position: relative;
-  top: 1.6vh;
-  border: 0.1vw solid rgb(167, 165, 165);
+  top: 1vh;
+  border: 0.1vw solid rgb(228, 228, 228);
   border-radius: 1vw;
 }
 main .input-fields {
@@ -219,110 +317,179 @@ main .input1 {
   font-weight: 400;
   color: rgb(100, 100, 100);
   outline: none;
-  font-size: 1.1vw;
+  font-size: 1.4vw;
+  font-weight: 600;
 }
 main .input2 {
   border: none;
   color: rgb(100, 100, 100);
-  padding: 1.5vh 0.3vw;
+  padding: 1vh 0.2vw;
   height: 2vh;
   resize: none;
   overflow: hidden;
   outline: none;
   letter-spacing: -0.1vw;
+  font-size: 1.2vw;
 }
 main .due-prior {
   display: flex;
   justify-content: space-between;
-  width: 30.1%;
+  width: 43%;
   padding: 0 0.75vw;
 }
 main .duedate {
-  height: 5vh;
-  border: 0.1vw solid rgb(167, 165, 165);
-  width: -moz-max-content;
-  width: max-content;
+  height: 3.5vh;
+  border: 0.1vw solid rgb(228, 228, 228);
+  color: rgb(0, 0, 0);
+  font-size: 1vw;
+  width: 9vw;
   border-radius: 0.4vw;
-  color: rgb(121, 120, 120);
   outline: none;
   cursor: pointer;
-}
-main .duedate::-webkit-calendar-picker-indicator {
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 main .duedate:hover {
-  background-color: rgb(225, 224, 224);
-  color: rgb(21, 21, 21);
+  background-color: rgb(238, 238, 238);
 }
 main .priority {
-  height: 5vh;
-  border: 0.1vw solid rgb(167, 165, 165);
+  height: 3.8vh;
+  background-color: #fff;
+  overflow: hidden;
+  border: 0.1vw solid rgb(228, 228, 228);
   width: 9vw;
   border-radius: 0.4vw;
   cursor: pointer;
-  color: rgb(121, 120, 120);
   outline: none;
-}
-main .priority:hover {
-  background-color: rgb(225, 224, 224);
-  color: rgb(21, 21, 21);
 }
 main .form-buttons {
   display: flex;
   justify-content: flex-end;
-  border-top: 0.1vw solid rgb(167, 165, 165);
+  border-top: 0.1vw solid rgb(228, 228, 228);
   position: relative;
-  top: 2vh;
+  top: 1.8vh;
 }
 main .twobuttons {
   display: flex;
   justify-content: space-between;
-  width: 18.5%;
-  margin: 0.7vw;
+  width: 23%;
+  margin: 1.1vh 1.1vw;
 }
 main .cancel-button {
   height: 5vh;
-  width: 5.2vw;
+  width: 6.1vw;
   border: none;
   border-radius: 0.4vw;
   cursor: pointer;
+  background-color: rgb(244, 244, 244);
+  font-size: 1.2vw;
+  font-weight: 500;
 }
 main .cancel-button:hover {
   background-color: rgb(225, 224, 224);
 }
 main .add-button {
   height: 5vh;
-  width: 5.6vw;
+  width: 8vw;
   border: none;
   border-radius: 0.4vw;
   cursor: pointer;
-  background-color: rgb(232, 124, 124);
+  background-color: rgb(232, 149, 149);
   color: white;
+  font-size: 1.2vw;
+  font-weight: 500;
+}
+main .update-button {
+  height: 5vh;
+  width: 8vw;
+  border: none;
+  border-radius: 0.4vw;
+  cursor: pointer;
+  background-color: rgb(232, 149, 149);
+  color: white;
+  font-size: 1.2vw;
+  font-weight: 500;
+  margin-left: 1vw;
+}
+main .update-button:hover {
+  background-color: rgb(236, 85, 85);
 }
 main .add-button:hover {
   background-color: rgb(236, 85, 85);
 }
 main .task-list {
-  margin-top: 7vh;
+  display: flex;
+  margin-top: 4vh;
+  flex-direction: column;
+  gap: 3vh;
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+main .task-list::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+main .task-list {
+  scrollbar-width: none;
 }
 main .task-item {
   display: flex;
   flex-direction: column;
-  height: 20vh;
-  width: 50vw;
+  height: 22vh;
+  width: 66.1vw;
   border: 0.1vw solid rgb(167, 165, 165);
   border-radius: 1vw;
+}
+main .check-task {
+  height: 2vh;
+  width: 2vh;
+  border-radius: 50%;
+  border: 0.1vw solid rgb(167, 165, 165);
+  position: absolute;
+  top: 3.8vh;
+  left: -2vw;
+  display: flex;
+  align-items: center;
+  font-size: 0.8vw;
+  justify-content: center;
+  cursor: pointer;
+}
+main .checked {
+  display: none;
+}
+main .check-task:hover .checked {
+  display: flex;
+}
+main .filter-tasks {
+  width: 9%;
+  height: 4.5vh;
+  cursor: pointer;
+  font-size: 1.2vw;
+  outline: none;
+  border-radius: 0.4vw;
+  position: relative;
+  right: 41.5vw;
+  margin: 1vh;
+  border: 0.1vw solid rgb(225, 224, 224);
+}
+main .filtered-task {
+  position: relative;
+  left: 17vw;
+  bottom: 12vh;
+  text-decoration: underline;
 }
 main .task-details {
   display: flex;
   flex-direction: column;
   position: relative;
-  bottom: 2vh;
-  left: 1vw;
+  bottom: 1vh;
+  left: 2.5vw;
 }
 main .task-details p {
   position: relative;
-  bottom: 5vh;
+  bottom: 4vh;
   width: 100%;
 }
 main .task-details2 {
@@ -331,41 +498,97 @@ main .task-details2 {
   align-items: center;
   flex-direction: row;
   position: relative;
-  bottom: 8vh;
-  border-top: 0.1vw solid rgb(167, 165, 165);
+  bottom: 6vh;
 }
 main .task-more-details {
   display: flex;
   justify-content: space-between;
-  width: 40%;
+  width: 55%;
   position: relative;
   left: 1vw;
+  top: 3vh;
+  border-top: 0.1vw solid rgb(228, 228, 228);
+}
+main .reminder {
+  height: 3.7vh;
+  width: 9vw;
+  border-radius: 0.4vw;
+  border: 0.1vw solid rgb(228, 228, 228);
+  background-color: white;
+  cursor: pointer;
+  outline: none;
+}
+main .reminder-popup {
+  position: absolute;
+  left: 17.1vw;
+  top: 4vh;
+  background-color: #fff;
+  border: 0.1vw solid #ccc;
+  padding: 10px;
+  border-radius: 0.5vw;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+}
+main .reminder-popup input {
+  border: 0.1vw solid rgb(228, 228, 228);
+  outline: none;
+  border-radius: 0.4vw;
+  position: relative;
+  right: 0.3vw;
+}
+main .reminder-popup input:hover {
+  background-color: rgb(238, 238, 238);
+}
+main .reminder-popup button {
+  position: relative;
+  left: 0.3vw;
+  outline: none;
+  border: 0.1vw solid rgb(228, 228, 228);
+  background-color: white;
+  border-radius: 0.4vw;
+}
+main .reminder-popup button:hover {
+  background-color: rgb(238, 238, 238);
+}
+main .reminder:hover {
+  background-color: rgb(238, 238, 238);
 }
 main .task-actions {
   display: flex;
   justify-content: space-between;
-  width: 23%;
+  width: 18%;
   position: relative;
+  top: 1vh;
   right: 1vw;
+  border-top: 0.1vw solid rgb(228, 228, 228);
 }
 main .edit-btn {
-  height: 5vh;
+  height: 4vh;
   width: 5.2vw;
   border: none;
   border-radius: 0.4vw;
   cursor: pointer;
+  background-color: rgb(244, 244, 244);
+  font-size: 1.2vw;
+  font-weight: 500;
+  position: relative;
+  top: 1.7vh;
 }
 main .edit-btn:hover {
-  background-color: rgb(187, 184, 184);
+  background-color: rgb(225, 224, 224);
 }
 main .delete-btn {
-  height: 5vh;
+  height: 4vh;
   width: 5.6vw;
   border: none;
   border-radius: 0.4vw;
   cursor: pointer;
-  background-color: #2e2d2d;
+  background-color: #474747;
   color: white;
+  font-size: 1.2vw;
+  font-weight: 500;
+  position: relative;
+  top: 1.7vh;
 }
 main .delete-btn:hover {
   background-color: black;
@@ -377,8 +600,11 @@ main .delete-btn:hover {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  top: 26.8vh;
+  top: 33vh;
   left: 43.8vw;
+}
+.image-details-container .image img {
+  height: 37vh;
 }
 .image-details-container .image-details {
   display: flex;
@@ -390,10 +616,10 @@ main .delete-btn:hover {
 }
 .image-details-container h4 {
   font-weight: 500;
-  font-size: 1.2vw;
+  font-size: 1.3vw;
 }
 .image-details-container p {
-  font-size: 1vw;
+  font-size: 1.1vw;
   width: 65%;
   position: relative;
   bottom: 3.5vh;
@@ -403,11 +629,51 @@ main .delete-btn:hover {
 }
 .image-details-container a {
   color: rgb(230, 73, 73);
-  font-size: 1vw;
+  font-size: 1.1vw;
   position: relative;
   bottom: 3vh;
 }
 .image-details-container .question-icon {
   font-size: 2.5vh;
   margin-right: 0.4vw;
+}
+
+.image-details-container-1 {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  top: 33vh;
+  left: 40vw;
+}
+.image-details-container-1 .image-1 img {
+  height: 37vh;
+}
+.image-details-container-1 .image-details-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  bottom: 2.5vh;
+}
+.image-details-container-1 h4 {
+  font-weight: 500;
+  font-size: 1.3vw;
+}
+.image-details-container-1 p {
+  font-size: 1.1vw;
+  width: 45%;
+  position: relative;
+  bottom: 3.5vh;
+  color: rgb(100, 100, 100);
+  line-height: 3.7vh;
+  font-weight: 400;
+}
+.image-details-container-1 a {
+  color: rgb(230, 73, 73);
+  font-size: 1.1vw;
+  position: relative;
+  bottom: 3vh;
 }/*# sourceMappingURL=main.css.map */

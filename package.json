@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
     "@fortawesome/fontawesome-svg-core": "^6.7.1",
     "@fortawesome/free-brands-svg-icons": "^6.7.1",
     "@fortawesome/free-regular-svg-icons": "^6.7.1",
@@ -15,12 +18,17 @@
     "@types/node": "^16.18.119",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "array-move": "^4.0.0",
     "axios": "^1.7.8",
     "firebase": "^11.0.2",
     "react": "^18.3.1",
+    "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.3.1",
+    "react-movable": "^3.3.1",
+    "react-moveable": "^0.56.0",
     "react-router-dom": "^7.0.1",
     "react-scripts": "^5.0.1",
+    "react-select": "^5.9.0",
     "sass": "^1.81.0",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.5",
@@ -53,6 +61,7 @@
     ]
   },
   "devDependencies": {
-    "@types/firebase": "^2.4.32"
+    "@types/firebase": "^2.4.32",
+    "@types/react-beautiful-dnd": "^13.1.8"
   }
 }
