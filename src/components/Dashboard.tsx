@@ -114,6 +114,11 @@ const Dashboard: React.FC<DashboardProps> = ({ user, handleSignOut, tasks, setTa
   const handleViewSwitch = (button: 'Today' | 'Filter') => {
     setActiveButton(button);
   };
+
+
+  useEffect(() => {
+    localStorage.setItem('filterCriteria', JSON.stringify(filterCriteria));
+  }, [filterCriteria]);
   
   useEffect(() => {
     const savedFilterCriteria = localStorage.getItem('filterCriteria');
@@ -121,10 +126,6 @@ const Dashboard: React.FC<DashboardProps> = ({ user, handleSignOut, tasks, setTa
       setFilterCriteria(JSON.parse(savedFilterCriteria));
     }
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem('filterCriteria', JSON.stringify(filterCriteria));
-  }, [filterCriteria]);
 
   const visibleTasks = tasks.filter((task) => !task.completed);
   
@@ -293,7 +294,6 @@ const Dashboard: React.FC<DashboardProps> = ({ user, handleSignOut, tasks, setTa
           <button
             className="apply-filters-btn"
             onClick={() => {
-              setActiveButton('Today');
               setIsFiltering(false);
             }}
           >
