@@ -4,8 +4,10 @@ import { faCheck, faFilter, faHome, faLaptop, faPlus, faRightFromBracket, faScho
 import { faCalendar, faCircleQuestion } from '@fortawesome/free-regular-svg-icons';
 import { ref, set, update, remove, push, onValue } from 'firebase/database';
 import { db } from '../firebaseConfig';
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 interface Task {
+  order: any;
   id: string;
   taskName: string;
   dueDate: string;
@@ -57,6 +59,28 @@ const Dashboard: React.FC<DashboardProps> = ({ user, handleSignOut, tasks, setTa
     tag: '',
 });
 
+const handleDragEnd = (result: any) => {
+  const { destination, source } = result;
+
+  if (!destination) return;
+
+  if (destination.index === source.index) return;
+
+  const reorderedTasks = Array.from(visibleTasks);
+  const [removed] = reorderedTasks.splice(source.index, 1);
+  reorderedTasks.splice(destination.index, 0, removed);
+
+  setTasks(reorderedTasks);
+
+  const safeEmail = getSafeEmail(user.email);
+
+  reorderedTasks.forEach((task, index) => {
+    const taskRef = ref(db, `users/${safeEmail}/tasks/${task.id}`);
+    update(taskRef, { order: index });
+  });
+};
+
+
   useEffect(() => {
     const now = Date.now();
 
@@ -90,6 +114,9 @@ const Dashboard: React.FC<DashboardProps> = ({ user, handleSignOut, tasks, setTa
             };
             tasksList.push(task);
           });
+
+          tasksList.sort((a, b) => a.order - b.order);
+
           setTasks(tasksList);
         },
         (error) => {
@@ -239,14 +266,10 @@ const Dashboard: React.FC<DashboardProps> = ({ user, handleSignOut, tasks, setTa
           <div className="filter-options">
             <label>
               Priority:
-              <select
-              className='p-select'
-                value={filterCriteria.priority}
-                onChange={(e) =>
-                  setFilterCriteria({
-                    ...filterCriteria,
-                    priority: e.target.value,
-                  })
+              <select className='p-select' value={filterCriteria.priority} onChange={(e) => setFilterCriteria(
+                {
+                    ...filterCriteria, priority: e.target.value,
+                })
                 }
               >
                 <option value="">All</option>
@@ -258,14 +281,9 @@ const Dashboard: React.FC<DashboardProps> = ({ user, handleSignOut, tasks, setTa
 
             <label>
               Due Date:
-              <input
-                className='dd-select'
-                type="date"
-                value={filterCriteria.dueDate}
-                onChange={(e) =>
-                  setFilterCriteria({
-                    ...filterCriteria,
-                    dueDate: e.target.value,
+              <input className='dd-select' type="date" value={filterCriteria.dueDate} onChange={(e) => setFilterCriteria(
+                  {
+                    ...filterCriteria, dueDate: e.target.value,
                   })
                 }
               />
@@ -273,13 +291,9 @@ const Dashboard: React.FC<DashboardProps> = ({ user, handleSignOut, tasks, setTa
 
             <label>
               Tag:
-              <select
-                className='tag-select'
-                value={filterCriteria.tag}
-                onChange={(e) =>
-                  setFilterCriteria({
-                    ...filterCriteria,
-                    tag: e.target.value,
+              <select className='tag-select' value={filterCriteria.tag} onChange={(e) => setFilterCriteria(
+                  {
+                    ...filterCriteria, tag: e.target.value,
                   })
                 }
               >
@@ -291,9 +305,8 @@ const Dashboard: React.FC<DashboardProps> = ({ user, handleSignOut, tasks, setTa
             </label>
           </div>
 
-          <button
-            className="apply-filters-btn"
-            onClick={() => {
+          <button className="apply-filters-btn" onClick={() => {
+              setActiveButton('Today');
               setIsFiltering(false);
             }}
           >
@@ -317,34 +330,12 @@ const Dashboard: React.FC<DashboardProps> = ({ user, handleSignOut, tasks, setTa
         {isAddingTask && (
           <div className="task-form">
             <div className="input-fields">
-              <input
-                className="input1"
-                type="text"
-                placeholder="Task name"
-                value={taskName}
-                onChange={(e) => setTaskName(e.target.value)}
-              />
-              <textarea
-                className="input2"
-                placeholder="Description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              ></textarea>
+              <input className="input1" type="text" placeholder="Task name" value={taskName} onChange={(e) => setTaskName(e.target.value)} />
+              <textarea className="input2" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
             </div>
             <div className="due-prior">
-              <input
-                className="duedate"
-                placeholder="Due date"
-                type="date"
-                value={dueDate}
-                onChange={(e) => setDueDate(e.target.value)}
-              />
-              <select
-                className="priority"
-                title="Priority"
-                value={priority}
-                onChange={(e) => setPriority(e.target.value)}
-              >
+              <input className="duedate" placeholder="Due date" type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
+              <select className="priority" title="Priority" value={priority} onChange={(e) => setPriority(e.target.value)}>
                 <option value="Low">Priority 1</option>
                 <option value="Normal">Priority 2</option>
                 <option value="High">Priority 3</option>
@@ -359,23 +350,14 @@ const Dashboard: React.FC<DashboardProps> = ({ user, handleSignOut, tasks, setTa
 
               {reminderPopupVisible && (
                 <div className="reminder-popup">
-                  <input
-                    type="datetime-local"
-                    value={reminderTime}
-                    onChange={(e) => setReminderTime(e.target.value)}
-                    placeholder="Set reminder"
-                  />
+                  <input type="datetime-local" value={reminderTime} onChange={(e) => setReminderTime(e.target.value)} placeholder="Set reminder" />
                   <button onClick={(e) => { e.stopPropagation(); setReminderPopupVisible(false); }}>Save</button>
                 </div>
               )}
             </div>
 
             <div className="form-buttons">
-            <select
-              className="filter-tasks"
-              value={tag}
-              onChange={(e) => setTag(e.target.value)}
-            >
+            <select className="filter-tasks" value={tag} onChange={(e) => setTag(e.target.value)}>
               <option><FontAwesomeIcon icon={faHome} />Home</option>
               <option><FontAwesomeIcon icon={faLaptop} />Work</option>
               <option><FontAwesomeIcon icon={faSchool} />Education</option>
@@ -393,18 +375,32 @@ const Dashboard: React.FC<DashboardProps> = ({ user, handleSignOut, tasks, setTa
         )}
 
        {activeButton === 'Today' && (
-        <div className="task-list">
+        <DragDropContext onDragEnd={handleDragEnd}>
+        <Droppable droppableId="taskList" direction='vertical'>
+      {(provided) => (
+        <div
+          ref={provided.innerRef}
+          {...provided.droppableProps}
+          className="task-list"
+        >
           {visibleTasks
             .filter((task) => 
             (!filterCriteria.priority || task.priority === filterCriteria.priority) &&
             (!filterCriteria.dueDate || task.dueDate === filterCriteria.dueDate) &&
             (!filterCriteria.tag || task.tag === filterCriteria.tag)
             )
-            .map((task) => {
+            .map((task, index) => {
               const taskId = task.id ?? `fallback-id-${task.taskName}`;
 
               return (
-                <div key={taskId} className="task-item">
+                <Draggable key={task.id ?? `fallback-id-${task.taskName}`} draggableId={task.id ?? `fallback-id-${task.taskName}`} index={index}>
+                  {(provided) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      className="task-item"
+                    >
                   <div className="task-details">
                     <h3>{task.taskName}</h3>
                     <p>{task.description}</p>
@@ -427,9 +423,15 @@ const Dashboard: React.FC<DashboardProps> = ({ user, handleSignOut, tasks, setTa
                     </div>
                   </div>
                 </div>
+                )}
+                </Draggable>
               );
             })}
+            {provided.placeholder}
         </div>
+      )}
+        </Droppable>
+        </DragDropContext>
        )}
       </main>
       )}
