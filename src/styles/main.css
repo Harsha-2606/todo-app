@@ -165,6 +165,7 @@ body {
   cursor: pointer;
   font-size: 1.3vw;
   gap: 1.3vh;
+  width: 100%;
   transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
 }
 .dashboard-container .db-search:hover, .dashboard-container .db-today:hover, .dashboard-container .db-filter:hover {
@@ -200,64 +201,60 @@ body {
   left: 1.2vh;
 }
 
-.filter-container {
-  margin: 3vw;
-  margin-left: 4.7vw;
+.filter-dropdown {
+  position: relative;
 }
-.filter-container h2 {
-  font-size: 2.2vw;
+.filter-dropdown .dropdown-content {
+  position: absolute;
+  top: 7vh;
+  left: 2.2vw;
 }
-.filter-container .filter-options {
+.filter-dropdown .si-sf {
   display: flex;
-  justify-content: space-between;
-  width: 130%;
   align-items: center;
+  justify-content: space-between;
+  width: 108%;
+  border-bottom: 0.2vw solid rgb(228, 228, 228);
 }
-.filter-container label {
-  font-size: 1.4vw;
-}
-.filter-container .p-select {
+.filter-dropdown .searchIcon {
   position: relative;
-  left: 1vw;
+  left: 0.3vw;
+  font-size: 2vh;
+}
+.filter-dropdown .dropdown-search {
   height: 4vh;
-  width: 7vw;
-  border: 0.1vw solid rgb(228, 228, 228);
-  outline: none;
-  border-radius: 0.4vw;
-}
-.filter-container .dd-select {
-  position: relative;
-  left: 1vw;
-  height: 4vh;
-  width: 8vw;
-  border: 0.1vw solid rgb(228, 228, 228);
-  outline: none;
-  border-radius: 0.4vw;
-}
-.filter-container .tag-select {
-  position: relative;
-  left: 1vw;
-  height: 4vh;
-  width: 7vw;
-  border: 0.1vw solid rgb(228, 228, 228);
-  outline: none;
-  border-radius: 0.4vw;
-}
-.filter-container .apply-filters-btn {
-  position: relative;
-  top: 5vh;
-  height: 5vh;
-  width: 8vw;
   border: none;
-  border-radius: 0.4vw;
-  cursor: pointer;
-  background-color: rgb(232, 149, 149);
-  color: white;
-  font-size: 1.2vw;
-  font-weight: 500;
+  outline: none;
+  background-color: transparent;
+  font-weight: bold;
 }
-.filter-container .apply-filters-btn:hover {
-  background-color: rgb(236, 85, 85);
+.filter-dropdown .dropdown-item {
+  position: relative;
+  top: 1.5vh;
+}
+.filter-dropdown .dropdown-item input {
+  margin-right: 0.8vw;
+}
+.filter-dropdown .clear-filters {
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: 2.8vh;
+  left: 0.3vw;
+  cursor: pointer;
+  height: 3vh;
+  width: 65%;
+  border-top: 0.2vw solid rgb(228, 228, 228);
+  border-bottom: 0.2vw solid rgb(228, 228, 228);
+}
+.filter-dropdown .multiply {
+  margin-right: 0.5vw;
+}
+.filter-dropdown .clear-filters-btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 1vw;
 }
 
 main {

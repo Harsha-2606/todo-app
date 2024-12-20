@@ -16,7 +16,8 @@
       {
         "ignore": [
           "scrollbar-width",
-          "scrollbar-width: none"
+          "scrollbar-width: none",
+          "-webkit-user-drag"
         ]
       }
     ],
@@ -32,6 +33,13 @@
       "default",
       {
         "html-has-lang": "off"
+      }
+    ],
+    "button-type": "off",
+    "axe/name-role-value": [
+      "default",
+      {
+        "button-name": "off"
       }
     ]
   }

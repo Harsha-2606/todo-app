@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faFilter, faHome, faLaptop, faPlus, faRightFromBracket, faSchool, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { faCalendar, faCircleQuestion } from '@fortawesome/free-regular-svg-icons';
 import { ref, set, update, remove, push, onValue } from 'firebase/database';
 import { db } from '../firebaseConfig';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faFilter, faMultiply, faPlus, faRightFromBracket, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar, faCircleQuestion } from '@fortawesome/free-regular-svg-icons';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 interface Task {
@@ -51,22 +51,55 @@ const Dashboard: React.FC<DashboardProps> = ({ user, handleSignOut, tasks, setTa
   const [reminderPopupVisible, setReminderPopupVisible] = useState(false);
   const [reminderTime, setReminderTime] = useState('');
   const [tag, setTag] = useState('Home');
-  const [, setIsFiltering] = useState(false);
-  const [activeButton, setActiveButton] = useState<'Today' | 'Filter'>('Today');
-  const [filterCriteria, setFilterCriteria] = useState({
-    priority: '',
-    dueDate: '',
-    tag: '',
-});
+  const [activeButton, setActiveButton] = useState('Today');
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const tags = ['Home', 'Work', 'Education'];
+  const priorities = ['Low', 'Normal', 'High'];
+  const dueDateFilters = ['Overdue', 'due-Today'];
+
+
+const toggleDropdown = () => setDropdownVisible(!dropdownVisible);
+
+const handleFilterChange = (filter: string) => {
+  setSelectedFilters((prevFilters) =>
+    prevFilters.includes(filter)
+      ? prevFilters.filter((f) => f !== filter)
+      : [...prevFilters, filter]
+  );
+};
+
+const clearFilters = () => {
+  setSelectedFilters([]);
+};
+
+const filteredTasks = tasks.filter((task) => {
+  if (!selectedFilters.includes('Completed') && task.completed) {
+    return false;
+  }
+  if (selectedFilters.length> 0) {
+    return selectedFilters.every((filter) => {
+      if (tags.includes(filter)) return task.tag === filter;
+      if (priorities.includes(filter)) return task.priority === filter;
+      if (dueDateFilters.includes(filter)) {
+        if (filter === 'Overdue') return new Date(task.dueDate) < new Date();
+        if (filter === 'Today') return new Date(task.dueDate).toDateString() === new Date().toDateString();
+      }
+      return false;
+    });
+  }
+  return !task.completed;
+  });
 
 const handleDragEnd = (result: any) => {
   const { destination, source } = result;
 
   if (!destination) return;
-
   if (destination.index === source.index) return;
 
-  const reorderedTasks = Array.from(visibleTasks);
+  const reorderedTasks = Array.from(tasks);
   const [removed] = reorderedTasks.splice(source.index, 1);
   reorderedTasks.splice(destination.index, 0, removed);
 
@@ -130,32 +163,15 @@ const handleDragEnd = (result: any) => {
   }, [user?.email, setTasks]);
 
   useEffect(() => {
-    const savedActiveButton = localStorage.getItem('activeButton') as 'Today' | 'Filter';
+    const savedActiveButton = localStorage.getItem('activeButton') as 'Today';
     setActiveButton(savedActiveButton || 'Today');
   }, []);
 
   useEffect(() => {
     localStorage.setItem('activeButton', activeButton);
   }, [activeButton]);
-  
-  const handleViewSwitch = (button: 'Today' | 'Filter') => {
-    setActiveButton(button);
-  };
 
-
-  useEffect(() => {
-    localStorage.setItem('filterCriteria', JSON.stringify(filterCriteria));
-  }, [filterCriteria]);
-  
-  useEffect(() => {
-    const savedFilterCriteria = localStorage.getItem('filterCriteria');
-    if (savedFilterCriteria) {
-      setFilterCriteria(JSON.parse(savedFilterCriteria));
-    }
-  }, []);
-
-  const visibleTasks = tasks.filter((task) => !task.completed);
-  
+  const visibleTasks = filteredTasks;
 
   const addOrUpdateTaskInline = async () => {
     if (taskName.trim()) {
@@ -221,6 +237,8 @@ const handleDragEnd = (result: any) => {
     }
   };
 
+
+
   const clearTaskForm = () => {
     setTaskName('');
     setDescription('');
@@ -247,10 +265,37 @@ const handleDragEnd = (result: any) => {
         <div className='dashboard-actions-form'>
         <div className='dashboard-actions'>
           <button className='db-search'><FontAwesomeIcon icon={faSearch} />Search</button>
-          <button className={`db-today ${activeButton === 'Today' ? 'active' : ''}`} onClick={() => handleViewSwitch('Today')}>
+          <button className={`db-today ${activeButton === 'Today' ? 'active' : ''}`} onClick={() => setActiveButton('Today')}>
             <FontAwesomeIcon icon={faCalendar} />Today</button>
-          <button className={`db-filter ${activeButton === 'Filter' ? 'active' : ''}`} onClick={() => handleViewSwitch('Filter')}>
+            <div className='filter-dropdown'>
+          <button className={`db-filter ${dropdownVisible ? 'active' : ''}`} onClick={toggleDropdown}>
             <FontAwesomeIcon icon={faFilter} />Filter Tasks</button>
+            {dropdownVisible && (
+              <div className='dropdown-content'>
+                <div className='si-sf'>
+                <FontAwesomeIcon className='searchIcon' icon={faSearch} /><input type="text" className="dropdown-search" placeholder="Search Filters" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+                </div>
+                {tags 
+                  .concat(priorities)
+                  .concat(dueDateFilters)
+                  .filter((filter) =>
+                    filter.toLowerCase().includes(searchQuery.toLowerCase())
+              )
+                .map((filter) => (
+                  <div key={filter} className='dropdown-item'>
+                    <label>
+                      <input type='checkbox' checked={selectedFilters.includes(filter)} onChange={() => handleFilterChange(filter)} />{filter}
+                    </label>
+                  </div>
+                ))}
+                {selectedFilters.length > 0 && (
+                <div className='clear-filters' onClick={clearFilters}>
+                  <FontAwesomeIcon className='multiply' icon={faMultiply} /><button className='clear-filters-btn'>Clear Filters</button>
+                  </div>
+                )}
+              </div>
+            )}
+            </div>
         </div>
       </div>
         <div className="dashboard-button" onClick={handleSignOut}>
@@ -259,62 +304,6 @@ const handleDragEnd = (result: any) => {
           </button>
         </div>
       </div>
-
-      {activeButton === 'Filter' && (
-        <div className="filter-container">
-          <h2>Filter Tasks</h2>
-          <div className="filter-options">
-            <label>
-              Priority:
-              <select className='p-select' value={filterCriteria.priority} onChange={(e) => setFilterCriteria(
-                {
-                    ...filterCriteria, priority: e.target.value,
-                })
-                }
-              >
-                <option value="">All</option>
-                <option value="Low">Priority 1</option>
-                <option value="Normal">Priority 2</option>
-                <option value="High">Priority 3</option>
-              </select>
-            </label>
-
-            <label>
-              Due Date:
-              <input className='dd-select' type="date" value={filterCriteria.dueDate} onChange={(e) => setFilterCriteria(
-                  {
-                    ...filterCriteria, dueDate: e.target.value,
-                  })
-                }
-              />
-            </label>
-
-            <label>
-              Tag:
-              <select className='tag-select' value={filterCriteria.tag} onChange={(e) => setFilterCriteria(
-                  {
-                    ...filterCriteria, tag: e.target.value,
-                  })
-                }
-              >
-                <option value="">All</option>
-                <option value="Home">Home</option>
-                <option value="Work">Work</option>
-                <option value="Education">Education</option>
-              </select>
-            </label>
-          </div>
-
-          <button className="apply-filters-btn" onClick={() => {
-              setActiveButton('Today');
-              setIsFiltering(false);
-            }}
-          >
-            Apply Filters
-          </button>
-        </div>
-      )}
-
 
     {activeButton === 'Today' && (
       <main>
@@ -358,9 +347,9 @@ const handleDragEnd = (result: any) => {
 
             <div className="form-buttons">
             <select className="filter-tasks" value={tag} onChange={(e) => setTag(e.target.value)}>
-              <option><FontAwesomeIcon icon={faHome} />Home</option>
-              <option><FontAwesomeIcon icon={faLaptop} />Work</option>
-              <option><FontAwesomeIcon icon={faSchool} />Education</option>
+              <option>Home</option>
+              <option>Work</option>
+              <option>Education</option>
                     </select>
               <div className="twobuttons">
                 <button className="cancel-button" onClick={clearTaskForm}>
@@ -383,17 +372,11 @@ const handleDragEnd = (result: any) => {
           {...provided.droppableProps}
           className="task-list"
         >
-          {visibleTasks
-            .filter((task) => 
-            (!filterCriteria.priority || task.priority === filterCriteria.priority) &&
-            (!filterCriteria.dueDate || task.dueDate === filterCriteria.dueDate) &&
-            (!filterCriteria.tag || task.tag === filterCriteria.tag)
-            )
-            .map((task, index) => {
+          {visibleTasks.map((task, index) => {
               const taskId = task.id ?? `fallback-id-${task.taskName}`;
 
               return (
-                <Draggable key={task.id ?? `fallback-id-${task.taskName}`} draggableId={task.id ?? `fallback-id-${task.taskName}`} index={index}>
+                <Draggable key={taskId} draggableId={taskId} index={index}>
                   {(provided) => (
                     <div
                       ref={provided.innerRef}
